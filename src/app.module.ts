@@ -3,7 +3,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
-// import { MongooseModule } from '@nestjs/mongoose';
+import config from './config/keys';
+import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
   imports: [
@@ -13,7 +14,7 @@ import { ConfigModule } from '@nestjs/config';
       envFilePath: '.env', // The path to the .env file (optional, defaults to .env)
     }),
     // Mongo setup
-    // MongooseModule.forRoot(),
+    MongooseModule.forRoot(config.mongoURI),
     AuthModule,
   ],
   controllers: [AppController],

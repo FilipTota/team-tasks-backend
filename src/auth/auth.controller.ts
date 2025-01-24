@@ -9,7 +9,7 @@ export class AuthController {
   // POST Signup
   @Post('signup') //--> /auth/signup
   async signUp(@Body() signUpData: SignUpDto) {
-    console.log('signUpData :>> ', signUpData);
+    return this.authService.signUp(signUpData);
   }
 
   // POST Signin
