@@ -11,7 +11,11 @@ export class AuthController {
   // POST Signup
   @Post('signup') //--> /auth/signup
   async signUp(@Body() signUpData: SignUpDto) {
-    return this.authService.signUp(signUpData);
+    const newUser = await this.authService.signUp(signUpData);
+
+    // get token to automatically signIn new user
+    const token = await this.authService.generateUserTokens(newUser._id);
+    return { newUser, token };
   }
 
   // POST Signin
